@@ -1,6 +1,6 @@
 # todos
 
-> My swell Nuxt.js project
+> 透過todoList練習Nuxt.js架構
 
 ## Build Setup
 
