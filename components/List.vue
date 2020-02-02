@@ -1,23 +1,27 @@
 <template lang="">
   <div>
-    <div class="operator-wrap mb-2" v-if="todos.length>0">
-      <b-button-group size="sm" v-if="selectedCount">
-        <b-button @click="finishTodo">完成</b-button>
-        <b-button @click="resetSelected">重設</b-button>
+    <div v-if="todos.length>0" class="operator-wrap mb-2">
+      <b-button-group v-if="selectedCount" size="sm">
+        <b-button @click="finishTodo">
+          完成
+        </b-button>
+        <b-button @click="resetSelected">
+          重設
+        </b-button>
       </b-button-group>
     </div>
     <B-list-group v-if="todos.length>0">
-      <B-list-group-item v-for="(todo, idx) in todos" :key="todo.id" @click="selectItem(todo.id)" class="item-hover">
+      <B-list-group-item v-for="todo in todos" :key="todo.id" class="item-hover" @click="selectItem(todo.id)">
         <b-row>
           <b-col cols="10" :class="{'selected-item': isSelectedItem(todo.id), 'align-self-center' : true}">
             {{ todo.title }}
           </b-col>
           <b-col cols="2">
-            <b-button variant="danger" @click.stop="doRemove(todo.id)" size="sm">刪除</b-button>
+            <b-button variant="danger" size="sm" @click.stop="doRemove(todo.id)">
+              刪除
+            </b-button>
           </b-col>
         </b-row>
-        
-
       </B-list-group-item>
     </B-list-Group>
     <div v-else>
@@ -26,38 +30,37 @@
   </div>
 </template>
 <script>
-import { BListGroup, BRow, BCol, BButton, BButtonGroup } from "bootstrap-vue";
-import { mapActions } from "vuex";
+import { mapActions } from "vuex"
 export default {
   computed: {
     todos() {
-      return this.$store.state.todos;
+      return this.$store.state.todos
     },
     selectedItems() {
-      return this.$store.state.selectedItems;
+      return this.$store.state.selectedItems
     },
     selectedCount() {
-      return this.$store.getters.selectCount;
+      return this.$store.getters.selectCount
     }
   },
   methods: {
     doRemove(id) {
-      this.removeTodo(id);
+      this.removeTodo(id)
     },
     isSelectedItem(id) {
-      return this.selectedItems.indexOf(id) !== -1;
+      return this.selectedItems.indexOf(id) !== -1
     },
     selectItem(id) {
       if (!this.isSelectedItem(id)) {
-        this.addSelect(id);
+        this.addSelect(id)
       } else {
-        this.removeSelect(id);
+        this.removeSelect(id)
       }
     },
 
     ...mapActions(["removeTodo", "addSelect", "removeSelect", "resetSelected", "finishTodo"])
   }
-};
+}
 </script>
 <style >
 .item-hover:hover {
