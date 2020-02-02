@@ -1,7 +1,7 @@
 
 const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
   router: {
-    base: '/todo_list/dist/'
+    base: '/todo_list/'
   }
 } : {}
 
