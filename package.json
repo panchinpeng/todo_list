@@ -11,7 +11,8 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue .",
     "lintfix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
-    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
+    "build:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt build",
+    "generate:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt generate"
   },
   "dependencies": {
     "bootstrap": "^4.1.3",
