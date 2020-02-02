@@ -57,9 +57,12 @@ export default {
       window.addEventListener("beforeunload", () => {
         this.storeData()
       })
-      this.initTodos(localStorage.getItem("todos"))
-      this.initSelectedItems(localStorage.getItem("selectedItems"))
-      this.initFinishTodos(localStorage.getItem("finishTodos"))
+      if(localStorage.getItem("todos")) {
+        this.initTodos(localStorage.getItem("todos"))
+        this.initSelectedItems(localStorage.getItem("selectedItems"))
+        this.initFinishTodos(localStorage.getItem("finishTodos"))
+      }
+      
     }
   },
 
